@@ -1,0 +1,59 @@
+<div class="row">
+  <div >
+    <sidebar [scope]="this"></sidebar>
+  </div>
+  <div class="col-md-10 col-sm-12 col-xs-12">
+    <mat-tab-group (selectedTabChange)="tabClick($event)">
+      <mat-tab>
+        <ng-template mat-tab-label class="mat-tab-label-active">
+          <i class="fa fa-search"></i>
+          <span>Tab 1</span>
+        </ng-template>
+
+        <app-dynamic-form [dynamicForm]="FormFields" action="search" ></app-dynamic-form>
+
+        <mat-card>
+          <app-mat-table [columns]="columns" [data]="data" [multiSelect]=true [scope]="this"></app-mat-table>
+        </mat-card>
+
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <i class="fa fa-print"></i>
+          <span>Tab 2</span>
+        </ng-template>
+        <!--<app-data-table [data]="data" [columns]="columns" [options]="options"></app-data-table>-->
+        <app-dynamic-form [dynamicForm]="FormFields" action="scan" ></app-dynamic-form>
+
+        <mat-card>
+          <app-mat-table [columns]="columns" [data]="data" [multiSelect]=false [scope]="this"></app-mat-table>
+        </mat-card>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <i class="fa fa-upload"></i>
+          <span>Tab 3</span>
+        </ng-template>
+        <app-dynamic-form [dynamicForm]="FormFields" action="upload" ></app-dynamic-form>
+
+        <mat-card>
+          <app-mat-table [columns]="columns" [data]="data" [multiSelect]=false [scope]="this"></app-mat-table>
+        </mat-card>
+      </mat-tab>
+      <mat-tab disabled>
+        <ng-template mat-tab-label>
+          <i class="fa fa-users"></i>
+          <span>Tab 4</span>
+        </ng-template>
+        <p>
+          Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
+          lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore
+          carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
+          Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester
+          cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray
+          yr.
+        </p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

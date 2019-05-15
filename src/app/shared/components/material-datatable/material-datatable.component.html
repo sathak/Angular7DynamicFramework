@@ -1,0 +1,49 @@
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autocomplete="off">
+  </mat-form-field>
+
+  <div>
+
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Static Checkbox Column -->
+      <div *ngIf="multiSelect">
+        <ng-container matColumnDef="checkboxes">
+          <th mat-header-cell *matHeaderCellDef >
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+      </div>
+      <!-- Dynamic Column Generation -->
+      <div *ngFor="let column of columns; let columnIndex = index">
+        <ng-container matColumnDef="{{column.rowId}}" *ngIf="column !='checkboxes'&&column !='star'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.title}}</th>
+          <td mat-cell *matCellDef="let row" [style.color]="column.title=='color'?row[column.rowId]:''"> {{row[column.rowId]}} </td>
+        </ng-container>
+      </div>
+      <ng-container matColumnDef="star">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button mat-button (click)="rowClick(element,i)"> <i class="fa fa-ellipsis-v"></i></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          ></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+</div>

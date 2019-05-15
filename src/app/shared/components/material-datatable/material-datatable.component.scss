@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td:first-child, td:last-child, th:first-child, th:last-child {
+  width: 10%;
+}
+
+td:not(:first-child):not(:last-child), th:not(:first-child):not(:last-child) {
+  width: 25%;
+}

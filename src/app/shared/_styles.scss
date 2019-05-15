@@ -1,0 +1,27 @@
+@import './theme/conf';
+@import './theme/base';
+@import './theme/fonts';
+@import './theme/cover/_card';
+@import './theme/cover/_buttons';
+@import './theme/cover/_form';
+@import './theme/cover/_tables';
+@import './theme/cover/_modal';
+@import './theme/cover/_pell-editor';
+@import './theme/cover/_ng2-select';
+
+.pages-content{
+  background:#fafafa !important;
+}
+.mat-tab-label-content i {
+  padding-right: 10px;
+}
+.mat-tab-label-active {
+  color: #000;
+  opacity: 1 !important;
+}
+.pages-sider {
+  height: 100vh !important; /* or 100% */
+}
+.btn{
+  margin-right:5px;
+}

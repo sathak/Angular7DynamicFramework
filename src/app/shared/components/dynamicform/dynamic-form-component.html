@@ -1,0 +1,30 @@
+
+    <mat-card>
+        <mat-card-content>
+            <div class="row">
+                <form [formGroup]="dynamicGroup" *ngIf="dynamicGroup">
+                    <div *ngFor="let field of dynamicForm.fields;">
+                        <dynamic-field [field]="field" [group]="dynamicGroup"></dynamic-field>
+                    </div>
+                </form>
+
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="text-center">
+            <button class="btn btn-primary"  mat-button (click)="onFormSubmit(dynamicGroup)">
+              <i class="fa fa-send-o"></i> Submit
+            </button>
+            <!-- <button class="btn btn-primary" *ngIf="action=='scan'" mat-button (click)="onFormSubmit(dynamicGroup)">
+              <i class="fa fa-print"></i> Scan
+            </button>
+            <button class="btn btn-primary" *ngIf="action=='upload'" mat-button (click)="onFormSubmit(dynamicGroup)">
+              <i class="fa fa-upload"></i> Upload
+            </button> -->
+            <button class="btn btn-primary" mat-button (click)="reset(dynamicGroup)">
+              <i class="fa fa-refresh"></i> Reset
+            </button>
+          </div>
+        </mat-card-actions>
+    </mat-card>
