@@ -14,11 +14,13 @@ import {
      MatCardModule,
   MatProgressSpinnerModule,
   MatTabsModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatDialogModule
 } from '@angular/material';
 /* components */
 import { PagesComponent } from './pages.component';
-import { OperationsComponent } from './operations/operations.component';
+import { OperationsComponent,DetailsComponent } from './operations/operations.component';
+
 
 
 
@@ -32,6 +34,7 @@ import { OperationsComponent } from './operations/operations.component';
       MatProgressSpinnerModule,
       MatSidenavModule,
       MatTabsModule,
+      MatDialogModule,
         FormsModule,
         ReactiveFormsModule,
         routing
@@ -39,9 +42,10 @@ import { OperationsComponent } from './operations/operations.component';
     declarations: [
         PagesComponent,
         OperationsComponent,
-        
+      DetailsComponent
     ],exports:[
         
-    ]
+  ],
+  entryComponents: [DetailsComponent],
 })
 export class PagesModule { }
