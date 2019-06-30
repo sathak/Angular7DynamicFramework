@@ -1,52 +1,81 @@
 <div [formGroup]="group" *ngIf="group" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-    <mat-form-field *ngIf="field.type==='textbox'">
-        <input [formControlName]="field.key" autocomplete="off" matInput [placeholder]="field.label" >
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
+  <mat-form-field *ngIf="field.type==='textbox'">
+    <input [formControlName]="field.key" autocomplete="off" matInput [placeholder]="field.label">
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <div class="mat-form-field-infix" *ngIf="field.type==='checkbox'">
+    <!--<mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>-->
+
+    <mat-checkbox [formControlName]="field.key" [(ngModel)]="field.value"> {{field.label}}</mat-checkbox>
+
+  </div>
+
+  <mat-form-field *ngIf="field.type==='textarea'">
+    <textarea matInput [formControlName]="field.key" [placeholder]="field.label"></textarea>
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="field.type==='select'">
+    <mat-select [placeholder]="field.label" [formControlName]="field.key">
+      <mat-option *ngFor="let option of field.options" [value]="option">{{option}}</mat-option>
+    </mat-select>
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="field.type==='multiselect'">
+    <mat-select multiple [placeholder]="field.label" [formControlName]="field.key">
+      <mat-option *ngFor="let option of field.options" [value]="option">{{option}}</mat-option>
+    </mat-select>
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="field.type==='datepicker'">
+    <input matInput [matDatepicker]="picker" [placeholder]="field.label" [formControlName]="field.key">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="field.type==='autocomplete'">
+    <input type="text" [formControlName]="field.key" [placeholder]="field.label" aria-label="Number"
+           matInput [formControl]="group.controls[field.key]"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" multiple>
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (optionSelected)="selectedclient($event)">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+      {{field.errormessage}}
+    </mat-error>
+  </mat-form-field>
+  <div *ngIf="field.type==='multiautocomplete'">
+    <mat-form-field class="example-full-width">
+      <input type="text" [formControlName]="field.key" [placeholder]="field.label" aria-label="Number"
+             matInput [formControl]="group.controls[field.key]"
+             [matAutocomplete]="auto">
+
+
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displaymultiFn">
+        <mat-option *ngFor="let option of multiSelectfiltered | async" [value]="multiSelectSelected">
+          <div (click)="optionClicked($event, option)">
+            <mat-checkbox [checked]="option.selected" (change)="toggleSelection(option)" (click)="$event.stopPropagation()">
+              {{ option.displayText }}
+            </mat-checkbox>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error>
+        {{field.errormessage}}
+      </mat-error>
+
     </mat-form-field>
 
-    <mat-form-field *ngIf="field.type==='textarea'">
-        <textarea matInput [formControlName]="field.key" [placeholder]="field.label"></textarea>
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field *ngIf="field.type==='select'"> 
-        <mat-select [placeholder]="field.label" [formControlName]="field.key">
-            <mat-option *ngFor="let option of field.options" [value]="option">{{option}}</mat-option>
-        </mat-select>
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field *ngIf="field.type==='multiselect'">
-        <mat-select multiple [placeholder]="field.label" [formControlName]="field.key">
-            <mat-option *ngFor="let option of field.options" [value]="option">{{option}}</mat-option>
-        </mat-select>
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field *ngIf="field.type==='datepicker'">
-        <input matInput [matDatepicker]="picker" [placeholder]="field.label" [formControlName]="field.key">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
-    </mat-form-field> 
-    <mat-form-field *ngIf="field.type==='autocomplete'">
-        <input type="text" [formControlName]="field.key" [placeholder]="field.label" aria-label="Number"
-         matInput [formControl]="group.controls[field.key]"
-            [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (optionSelected)="selectedclient($event)" >
-                {{option}}
-            </mat-option>
-        </mat-autocomplete>
-        <mat-error>
-            {{field.errormessage}}
-        </mat-error>
-    </mat-form-field>
+  </div>
 </div>
