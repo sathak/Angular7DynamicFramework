@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -24,6 +27,11 @@ import {
 
 } from '@angular/material';
 
+import { GlobalService } from './services/global.service';
+
+import { DataService } from './services/data.service';
+import { AuthInterceptor } from './services/AuthInterceptor';
+
 /* components */
 import { CardComponent } from './components/card/card.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
@@ -40,12 +48,13 @@ import { DynamicFormComponent } from './components/dynamicform/dynamic-form-comp
 import { DynamicFieldComponent } from './components/dynamicform/components/dynamic-field-component';
 import { MaterialDatatableComponent } from './components/material-datatable/material-datatable.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
     NgxPaginationModule,
     MatInputModule,
-   MatButtonModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
@@ -59,8 +68,9 @@ import { MaterialDatatableComponent } from './components/material-datatable/mate
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     JsonpModule
-    
+
   ],
   declarations: [
     CardComponent,
@@ -77,6 +87,15 @@ import { MaterialDatatableComponent } from './components/material-datatable/mate
     DynamicFormComponent,
     DynamicFieldComponent,
     MaterialDatatableComponent
+  ],
+  providers: [
+    DataService,
+    GlobalService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   exports: [
     CdkTableModule,
