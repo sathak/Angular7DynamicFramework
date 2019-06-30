@@ -209,4 +209,4 @@ export class DetailsComponent {
     this.dialogRef.close();
   }
 
-}
+} 
