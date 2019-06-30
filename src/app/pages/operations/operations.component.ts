@@ -96,7 +96,17 @@ export class OperationsComponent implements OnInit {
           required:true,
           errormessage:'Department Required!',
           options : ['one', 'two', 'three', 'four', 'five', 'six', 'seven']
-        }
+        },
+        ,
+            {
+              key: 'Users',
+              label: 'User(s) ',
+              type: 'multiautocomplete',
+              value: null,
+              required: true,
+              errormessage: 'Users Required!',
+              options: [{ 'Id': 1, 'displayText': 'Arun' }, { 'Id': 2, 'displayText': 'Varun' }, { 'Id': 3, 'displayText': 'Bob' }, { 'Id': 4, 'displayText': 'Babu' }, { 'Id': 5, 'displayText': 'chinnu' }]
+            }
       ]
     };
   }
