@@ -41,7 +41,7 @@
     "jquery": "^3.4.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "lodash.assign": "^4.2.0",
     "moment": "^2.24.0",
     "ngx-echarts": "^2.0.0",
