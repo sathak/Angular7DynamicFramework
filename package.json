@@ -43,7 +43,7 @@
     "less-loader": "^4.1.0",
     "lodash": "^4.17.11",
     "lodash.assign": "^4.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-echarts": "^2.0.0",
     "ngx-pagination": "^3.0.3",
     "node-gyp": "^4.0.0",
